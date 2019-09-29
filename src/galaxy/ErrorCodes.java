@@ -8,14 +8,11 @@ package galaxy;
 /**
  * @author Alhafiz Putra
  *
- * This class is the starting point of the application.
+ * This class consists particular Error Codes
  *
  */
 public enum ErrorCodes {
-        SUCCESS,
-	NO_INPUT,
-	INVALID,
-        INVALID_ROMAN_CHARACTER,
+        NO_INPUT,
         INVALID_ROMAN_STRING,
 	INCORRECT_LINE_TYPE,
 	NO_QUESTION,

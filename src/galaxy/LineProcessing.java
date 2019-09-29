@@ -53,13 +53,11 @@ public class LineProcessing {
         Scanner scanner = new Scanner(System.in);
 
         while (scanner.hasNextLine()) {
-
             inputLine = scanner.nextLine();
             if (inputLine.length() == 0) {
-                if (inputList.isEmpty()) {
-                    errorCodes = ErrorCodes.NO_INPUT;
-                    outputList.add(errorMessages.getMessage(errorCodes));
-                }
+//                if (inputList.isEmpty()) {
+//                    System.out.println("break");
+//                }
                 break;
             }
             inputList.add(inputLine);
@@ -67,36 +65,41 @@ public class LineProcessing {
         return inputList;
     }
 
-    public void processLine(List<String> inputList) {
-        List<Lines> lineList = new ArrayList<>();
-        Lines lines = null;
+    public List<String> processLine(List<String> inputList) {
+        if (inputList.isEmpty()) {
+            errorCodes = ErrorCodes.NO_INPUT;
+            outputList.add(errorMessages.getMessage(errorCodes));
+        } else {
+            List<Lines> lineList = new ArrayList<>();
+            Lines lines = null;
 
-        for (String line : inputList) {
-            lineType = determineLineType(line);
-            lines = new Lines(line, lineType);
-            lineList.add(lines);
+            for (String line : inputList) {
+                lineType = determineLineType(line);
+                lines = new Lines(line, lineType);
+                lineList.add(lines);
 
-            switch (lines.getLineType().getLineType()) {
-                case "ASSUMPTION":
-                    processAssumptions(line);
-                    break;
-                case "CREDITS":
-                    processCredits(line);
-                    break;
-                case "HOW_MUCH":
-                    processHowMuch(line);
-                    break;
-                case "HOW_MANY":
-                    processHowMany(line);
-                    break;
-                case "NO_MATCH":
-                    processNoMatch(line);
-                    break;
-                default: ;
+                switch (lines.getLineType().getLineType()) {
+                    case "ASSUMPTION":
+                        processAssumptions(line);
+                        break;
+                    case "CREDITS":
+                        processCredits(line);
+                        break;
+                    case "HOW_MUCH":
+                        processHowMuch(line);
+                        break;
+                    case "HOW_MANY":
+                        processHowMany(line);
+                        break;
+                    case "NO_MATCH":
+                        processNoMatch(line);
+                        break;
+                    default: ;
+                }
             }
         }
-//        System.out.println("prepare output..");
-        output(outputList, lineList);
+
+        return outputList;
     }
 
     public LineType determineLineType(String line) {
@@ -111,7 +114,7 @@ public class LineProcessing {
                 lineType = lt;
             }
         }
-        System.out.println("lineType : " + lineType);
+//        System.out.println("lineType : " + lineType);
         return lineType;
     }
 
@@ -129,9 +132,6 @@ public class LineProcessing {
             roman = roman.concat(assump);
         }
         int number = converter.romanToDecimal(roman);
-        if (number == -1) {
-            errorCodes = ErrorCodes.INVALID;
-        }
         double element = Double.valueOf(splitLine[4]) / number;
         elements.put(splitLine[2], Double.toString(element));
     }
@@ -151,37 +151,56 @@ public class LineProcessing {
             roman = roman.concat(assump);
             output = output.concat(splitLine[i].concat(" "));
         }
+        boolean isValid = converter.isValid(roman);
+        if (!isValid) {
+            errorCodes = ErrorCodes.INVALID_ROMAN_STRING;
+            outputList.add(errorMessages.getMessage(errorCodes));
+            return;
+        }
         int number = converter.romanToDecimal(roman);
         outputList.add(output.concat("is ").concat(Integer.toString(number)));
     }
 
     public void processHowMany(String line) {
-        System.out.println("processHowMany");
-        System.out.println("line : " + line);
-        System.out.println("assumptions : " + assumptions);
+//        System.out.println("processHowMany");
+//        System.out.println("line : " + line);
+//        System.out.println("assumptions : " + assumptions);
         String[] splitLine = line.replace("?", "").trim().split("\\s+");
         String roman = "";
         String output = "";
-
-        for (int i = 4; i < 6; i++) {
-            String assump = assumptions.get(splitLine[i]);
-            System.out.println("splitLine[i] : " + splitLine[i]);
-            System.out.println("assump : " + assump);
-            if (assump == null) {
-                errorCodes = ErrorCodes.NO_IDEA;
-                outputList.add(errorMessages.getMessage(errorCodes));
-                return;
+        int number = 0;
+        double element = 1;
+        double credits = 0;
+        for (int i = 4; i < splitLine.length; i++) {
+//            System.out.println("splitLine["+i+"] : " + splitLine[i]);
+            if (assumptions.get(splitLine[i]) != null) {
+                String assump = assumptions.get(splitLine[i]);
+//                System.out.println("splitLine[i] : " + splitLine[i]);
+//                System.out.println("assump : " + assump);
+                if (assump == null) {
+                    errorCodes = ErrorCodes.NO_IDEA;
+                    outputList.add(errorMessages.getMessage(errorCodes));
+                    return;
+                }
+                roman = roman.concat(assump);
+//                System.out.println("roman : " + roman);
+                number = converter.romanToDecimal(roman);
+            } else {
+                element *= Double.valueOf(elements.get(splitLine[i]));
+//                System.out.println("element : " + element);
             }
-            roman = roman.concat(assump);
-            System.out.println("roman : " + roman);
             output = output.concat(splitLine[i].concat(" "));
         }
-        int number = converter.romanToDecimal(roman);
-        double element = Double.valueOf(elements.get(splitLine[6]));
-        System.out.println("element : " + element);
-        double credits = number * element;
-        System.out.println("credits : " + credits);
-        outputList.add(output.concat("is ").concat(Double.toString(credits)));
+
+        if (number != 0 && element != 0) {
+            credits = number * element;
+        } else if (number == 0 && element != 0) {
+            credits = element;
+        }
+
+//        System.out.println("element : " + element);
+//        System.out.println("credits : " + credits);
+        outputList.add(output.concat("is ").concat(Double.toString(credits)).concat(" Credits"));
     }
 
     public void processNoMatch(String line) {
@@ -189,14 +208,12 @@ public class LineProcessing {
         outputList.add(errorMessages.getMessage(errorCodes));
     }
 
-    public void output(List<String> outputList, List<Lines> lineList) {
-        if (lineList.isEmpty()) {
-            errorCodes = ErrorCodes.NO_INPUT;
-            outputList.add(errorMessages.getMessage(errorCodes));
-        } else if (outputList.isEmpty()) {
+    public void showOutput(List<String> outputList) {
+        if (outputList.isEmpty()) {
             errorCodes = ErrorCodes.NO_QUESTION;
             outputList.add(errorMessages.getMessage(errorCodes));
         }
+//        System.out.println("outputList : " + outputList);
 
         for (String output : outputList) {
             System.out.println(output);

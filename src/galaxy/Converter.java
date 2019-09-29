@@ -46,8 +46,8 @@ public class Converter {
         return -1;
     }
     
-    public boolean validate(String str) {
-        if (!str.matches(romanNumberValidator)) {
+    public boolean isValid(String str) {
+        if (str.matches(romanNumberValidator)) {
             return true;
         }
         return false;
@@ -58,9 +58,6 @@ public class Converter {
 //        System.out.println("romanToDecimal");
         // Initialize result 
         int res = 0;
-//        if (!str.matches(romanNumberValidator)) {
-//            res = -1;
-//        }
 
         for (int i = 0; i < str.length(); i++) {
             // Getting value of symbol s[i] 

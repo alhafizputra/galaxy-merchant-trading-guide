@@ -21,9 +21,11 @@ public class Application {
         //input line from console, iterate till blank line
         List<String> inputList = lineProcessing.inputLine();
         
-        //read input(line) list, validate, process and show output
-        lineProcessing.processLine(inputList);
+        //read input(line) list, validate, process
+        List<String> outputList = lineProcessing.processLine(inputList);
         
+        //show output
+        lineProcessing.showOutput(outputList);
     }
 
 }

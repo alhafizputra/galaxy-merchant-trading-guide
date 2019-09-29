@@ -8,7 +8,7 @@ package galaxy;
 /**
  * @author Alhafiz Putra
  *
- * This class is the starting point of the application.
+ * This class consist particular Error Message
  *
  */
 public class ErrorMessage {
@@ -28,14 +28,8 @@ public class ErrorMessage {
             case NO_INPUT:
                 message = "There is no input";
                 break;
-            case INVALID:
-                message = "Input format is wrong";
-                break;
             case INCORRECT_LINE_TYPE:
                 message = "Incorrect line type";
-                break;
-            case INVALID_ROMAN_CHARACTER:
-                message = "Illegal character specified in roman number ! input discarded";
                 break;
             case INVALID_ROMAN_STRING:
                 message = "wrong Roman number, voilated roman number format";
