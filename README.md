@@ -30,15 +30,17 @@ Only one small-value symbol may be subtracted from any large-value symbol.
 
 
 A number written in Arabic numerals can be broken into digits. For example, 1903 is composed of
-1, 9, 0, and 3. To write the Roman numeral, each of the non-zero digits should be treated separately. In the above example, 1,000 = M, 900 = CM, and 3 = III. Therefore, 1903 = MCMIII.
-
-
--- Source: Wikipedia (http://en.wikipedia.org/wiki/Roman_numerals)
+1, 9, 0, and 3. To write the Roman numeral, each of the non-zero digits should be treated separately. In the above example, 1,000 = M, 900 = CM, and 3 = III. Therefore, 1903 = MCMIII.-- Source: Wikipedia (http://en.wikipedia.org/wiki/Roman_numerals)
 
 Test Input:
-------------- glob is I prok is V pish is X tegj is L
- 
-glob glob Silver is 34 Credits glob prok Gold is 57800 Credits pish pish Iron is 3910 Credits
+------------- 
+glob is I 
+prok is V 
+pish is X 
+tegj is L 
+glob glob Silver is 34 Credits 
+glob prok Gold is 57800 Credits 
+pish pish Iron is 3910 Credits
 how much is pish tegj glob glob ?
 how many Credits is glob prok Silver ? how many Credits is glob prok Gold ? how many Credits is glob prok Iron ?
 how much wood could a woodchuck chuck if a woodchuck could chuck wood ?
