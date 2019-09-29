@@ -6,13 +6,13 @@ You decided to give up on earth after the latest financial collapse left 99.99% 
 
 
 Symbol Value
-- I 1
-- V 5
-- X 10
-- L 50
-- C 100
-- D 500
-- M 1,000
+I 1
+V 5
+X 10
+L 50
+C 100
+D 500
+M 1,000
 
 
 Numbers are formed by combining symbols together and adding the values. For example, MMVI is
@@ -30,7 +30,9 @@ Only one small-value symbol may be subtracted from any large-value symbol.
 
 
 A number written in Arabic numerals can be broken into digits. For example, 1903 is composed of
-1, 9, 0, and 3. To write the Roman numeral, each of the non-zero digits should be treated separately. In the above example, 1,000 = M, 900 = CM, and 3 = III. Therefore, 1903 = MCMIII.-- Source: Wikipedia (http://en.wikipedia.org/wiki/Roman_numerals)
+1, 9, 0, and 3. To write the Roman numeral, each of the non-zero digits should be treated separately. In the above example, 1,000 = M, 900 = CM, and 3 = III. Therefore, 1903 = MCMIII.
+
+-- Source: Wikipedia (http://en.wikipedia.org/wiki/Roman_numerals)
 
 Test Input:
 ------------- 
