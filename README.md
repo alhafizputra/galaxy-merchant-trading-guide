@@ -6,10 +6,15 @@ You decided to give up on earth after the latest financial collapse left 99.99% 
 
 
 Symbol Value
--I 1
--V 5
+
+I 1
+
+V 5
+
 X 10
+
 L 50
+
 C 100
 D 500
 M 1,000
