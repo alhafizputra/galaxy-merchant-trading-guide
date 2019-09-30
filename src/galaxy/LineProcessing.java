@@ -171,7 +171,6 @@ public class LineProcessing {
         int number = 0;
         double element = 1;
         double credits = 0;
-        System.out.println("elements : " + elements);
         for (int i = 4; i < splitLine.length; i++) {
             if (assumptions.get(splitLine[i]) != null) {
                 String assump = assumptions.get(splitLine[i]);
@@ -183,7 +182,6 @@ public class LineProcessing {
                 roman = roman.concat(assump);
                 number = converter.romanToDecimal(roman);
             } else if (elements.get(splitLine[i]) != null) {
-                System.out.println("elements");
                 element *= Double.valueOf(elements.get(splitLine[i]));
             } else {
                 errorCodes = ErrorCodes.NO_IDEA;
