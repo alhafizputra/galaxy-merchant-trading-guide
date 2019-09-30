@@ -42,10 +42,15 @@ A number written in Arabic numerals can be broken into digits. For example, 1903
 Test Input:
 ------------- 
 glob is I
+
 prok is V
+
 pish is X
+
 tegj is L
+
 glob glob Silver is 34 Credits
+
 glob prok Gold is 57800 Credits
 pish pish Iron is 3910 Credits
 how much is pish tegj glob glob ?
