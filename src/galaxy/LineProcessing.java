@@ -122,14 +122,21 @@ public class LineProcessing {
     public void processCredits(String line) {
         String[] splitLine = line.replace("?", "").trim().split("\\s+");
         String roman = "";
-
-        for (int i = 0; i < 2; i++) {
+        
+        int isIndex = 0;
+        for (int i = 0; i < splitLine.length; i++) {
+            if (splitLine[i].equals("is")) {
+                isIndex = i;
+                break;
+            }
+        }
+        for (int i = 0; i < isIndex-1; i++) {
             String assump = assumptions.get(splitLine[i]);
             roman = roman.concat(assump);
         }
         int number = converter.romanToDecimal(roman);
-        double element = Double.valueOf(splitLine[4]) / number;
-        elements.put(splitLine[2], Double.toString(element));
+        double element = Double.valueOf(splitLine[isIndex+1]) / number;
+        elements.put(splitLine[isIndex-1], Double.toString(element));
     }
 
     public void processHowMuch(String line) {
@@ -164,6 +171,7 @@ public class LineProcessing {
         int number = 0;
         double element = 1;
         double credits = 0;
+        System.out.println("elements : " + elements);
         for (int i = 4; i < splitLine.length; i++) {
             if (assumptions.get(splitLine[i]) != null) {
                 String assump = assumptions.get(splitLine[i]);
@@ -175,6 +183,7 @@ public class LineProcessing {
                 roman = roman.concat(assump);
                 number = converter.romanToDecimal(roman);
             } else if (elements.get(splitLine[i]) != null) {
+                System.out.println("elements");
                 element *= Double.valueOf(elements.get(splitLine[i]));
             } else {
                 errorCodes = ErrorCodes.NO_IDEA;
