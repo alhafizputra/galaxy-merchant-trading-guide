@@ -55,9 +55,6 @@ public class LineProcessing {
         while (scanner.hasNextLine()) {
             inputLine = scanner.nextLine();
             if (inputLine.length() == 0) {
-//                if (inputList.isEmpty()) {
-//                    System.out.println("break");
-//                }
                 break;
             }
             inputList.add(inputLine);
@@ -114,7 +111,6 @@ public class LineProcessing {
                 lineType = lt;
             }
         }
-//        System.out.println("lineType : " + lineType);
         return lineType;
     }
 
@@ -162,9 +158,6 @@ public class LineProcessing {
     }
 
     public void processHowMany(String line) {
-//        System.out.println("processHowMany");
-//        System.out.println("line : " + line);
-//        System.out.println("assumptions : " + assumptions);
         String[] splitLine = line.replace("?", "").trim().split("\\s+");
         String roman = "";
         String output = "";
@@ -172,22 +165,21 @@ public class LineProcessing {
         double element = 1;
         double credits = 0;
         for (int i = 4; i < splitLine.length; i++) {
-//            System.out.println("splitLine["+i+"] : " + splitLine[i]);
             if (assumptions.get(splitLine[i]) != null) {
                 String assump = assumptions.get(splitLine[i]);
-//                System.out.println("splitLine[i] : " + splitLine[i]);
-//                System.out.println("assump : " + assump);
                 if (assump == null) {
                     errorCodes = ErrorCodes.NO_IDEA;
                     outputList.add(errorMessages.getMessage(errorCodes));
                     return;
                 }
                 roman = roman.concat(assump);
-//                System.out.println("roman : " + roman);
                 number = converter.romanToDecimal(roman);
-            } else {
+            } else if (elements.get(splitLine[i]) != null) {
                 element *= Double.valueOf(elements.get(splitLine[i]));
-//                System.out.println("element : " + element);
+            } else {
+                errorCodes = ErrorCodes.NO_IDEA;
+                outputList.add(errorMessages.getMessage(errorCodes));
+                return;
             }
             output = output.concat(splitLine[i].concat(" "));
         }
@@ -198,8 +190,6 @@ public class LineProcessing {
             credits = element;
         }
 
-//        System.out.println("element : " + element);
-//        System.out.println("credits : " + credits);
         outputList.add(output.concat("is ").concat(Double.toString(credits)).concat(" Credits"));
     }
 
@@ -213,7 +203,6 @@ public class LineProcessing {
             errorCodes = ErrorCodes.NO_QUESTION;
             outputList.add(errorMessages.getMessage(errorCodes));
         }
-//        System.out.println("outputList : " + outputList);
 
         for (String output : outputList) {
             System.out.println(output);

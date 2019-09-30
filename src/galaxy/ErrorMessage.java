@@ -32,7 +32,7 @@ public class ErrorMessage {
                 message = "Incorrect line type";
                 break;
             case INVALID_ROMAN_STRING:
-                message = "wrong Roman number, voilated roman number format";
+                message = "Wrong Roman number";
                 break;
             case NO_QUESTION:
                 message = "There is no question line you drop";
