@@ -7,17 +7,13 @@ You decided to give up on earth after the latest financial collapse left 99.99% 
 
 Symbol Value
 
-I 1
-
-V 5
-
-X 10
-
-L 50
-
-C 100
-D 500
-M 1,000
+I 1<br>
+V 5<br>
+X 10<br>
+L 50<br>
+C 100<br>
+D 500<br>
+M 1,000<br>
 
 
 Numbers are formed by combining symbols together and adding the values. For example, MMVI is
@@ -41,32 +37,23 @@ A number written in Arabic numerals can be broken into digits. For example, 1903
 
 Test Input:
 ------------- 
-glob is I
-
-prok is V
-
-pish is X
-
-tegj is L
-
-glob glob Silver is 34 Credits
-
-glob prok Gold is 57800 Credits
-pish pish Iron is 3910 Credits
-how much is pish tegj glob glob ?
-how many Credits is glob prok Silver ? how many Credits is glob prok Gold ? how many Credits is glob prok Iron ?
+glob is I<br>
+prok is V<br>
+pish is X<br>
+tegj is L<br>
+glob glob Silver is 34 Credits<br>
+glob prok Gold is 57800 Credits<br>
+pish pish Iron is 3910 Credits<br>
+how much is pish tegj glob glob ?<br>
+how many Credits is glob prok Silver ? how many Credits is glob prok Gold ? how many Credits is glob prok Iron ?<br>
 how much wood could a woodchuck chuck if a woodchuck could chuck wood ?
 
 
 Expecting Output:
 ---------------
-pish tegj glob glob is 42
-
-glob prok Silver is 68 Credits
-
-glob prok Gold is 57800 Credits
-
-glob prok Iron is 782 Credits
-
+pish tegj glob glob is 42<br>
+glob prok Silver is 68 Credits<br>
+glob prok Gold is 57800 Credits<br>
+glob prok Iron is 782 Credits<br>
 I have no idea what you are talking about
 
