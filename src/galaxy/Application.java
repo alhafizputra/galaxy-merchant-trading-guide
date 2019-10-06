@@ -5,6 +5,7 @@
  */
 package galaxy;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         LineProcessing lineProcessing = new LineProcessing();
         
         //input line from console, iterate till blank line
